@@ -3,6 +3,7 @@ import { useState } from "react";
 import Bottle from "../Bottle/Bottle";
 import './Bottles.css'
 import { addToLS, getStoredCart } from "../../utilities/localStorage";
+import Cart from "../Cart/Cart";
 
 const Bottles = () => {
 
@@ -34,6 +35,7 @@ const Bottles = () => {
             
         }
         console.log("save cart",saveCArt);
+        setCart(saveCArt)
         
        }
        
@@ -45,14 +47,15 @@ const Bottles = () => {
          const newCart = [...cart, bottle]
          setCart(newCart)
          addToLS(bottle.id)
-         
-         
+                  
     }
 
     return (
         <div>
             <h2>Bottles Available: {bottles.length}</h2>
-            <h4>Cart: {cart.length}</h4>
+            <h4>Cart(from parents): {cart.length}</h4>
+            <Cart cart={cart}></Cart>
+
              <div className="bottle-container">
              {
                 bottles.map(bottle => <Bottle 
